@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/calibrate_joints.dir/src/calibrate_joints.cpp.o CMakeFiles/calibrate_joints.dir/src/arm_motor_bus.cpp.o -o /root/r1_arm/bin/calibrate_joints   -L/root/r1_arm/thirdparty/motor_controller/lib  -Wl,-rpath,/root/r1_arm/thirdparty/motor_controller/lib /root/r1_arm/thirdparty/motor_controller/lib/libmotor_controller.so 
