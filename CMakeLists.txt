@@ -13,10 +13,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 find_package(Threads REQUIRED)
 
-# ----- IM6014 motor_controller (vendored) -----
+# ----- IM6014 motor_controller (build from vendored source) -----
 set(MOTOR_CONTROLLER_ROOT ${CMAKE_SOURCE_DIR}/thirdparty/motor_controller)
-find_library(MOTOR_CONTROLLER_LIB motor_controller
-  PATHS ${MOTOR_CONTROLLER_ROOT}/lib NO_DEFAULT_PATH REQUIRED)
+add_subdirectory(${MOTOR_CONTROLLER_ROOT})
 
 add_executable(test_arm_lowlevel
   src/test_arm_lowlevel.cpp
@@ -32,12 +31,10 @@ foreach(tgt test_arm_lowlevel calibrate_joints)
     ${CMAKE_SOURCE_DIR}/include
     ${MOTOR_CONTROLLER_ROOT}/include
   )
-  target_link_directories(${tgt} PRIVATE ${MOTOR_CONTROLLER_ROOT}/lib)
   target_link_libraries(${tgt} PRIVATE
-    ${MOTOR_CONTROLLER_LIB}
+    motor_controller
     Threads::Threads
   )
-  target_compile_definitions(${tgt} PRIVATE MOTOR_CONTROLLER_SHARED)
 endforeach()
 
 set_target_properties(test_arm_lowlevel calibrate_joints PROPERTIES
