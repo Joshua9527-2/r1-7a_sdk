@@ -1,4 +1,4 @@
-# r1_arm
+# r1-7a_sdk
 R1 robotic arm low-level control SDK (IM6014 serial bus).
 
 ### Prebuild environment
